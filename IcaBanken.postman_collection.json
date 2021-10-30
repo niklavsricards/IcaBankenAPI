@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "ab7f0bcd-f15c-43c0-8feb-6e026798bf43",
+		"name": "Ica Banken Requests Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST for getting access token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "<client_id>",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "<client_secret>",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "psd2_sandbox:<SSN>",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://ims.icagruppen.se/oauth/v2/token",
+					"protocol": "https",
+					"host": [
+						"ims",
+						"icagruppen",
+						"se"
+					],
+					"path": [
+						"oauth",
+						"v2",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET for getting transactions",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Request-ID",
+						"value": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer <access_token>"
+					}
+				],
+				"url": {
+					"raw": "https://apimgw-icabanken.ica.se/t/icabanken.tenant/ica/bank/services/psd2/accounts/sandbox/1.0.0/Accounts/{AccountId}/transactions?status=<status>",
+					"protocol": "https",
+					"host": [
+						"apimgw-icabanken",
+						"ica",
+						"se"
+					],
+					"path": [
+						"t",
+						"icabanken.tenant",
+						"ica",
+						"bank",
+						"services",
+						"psd2",
+						"accounts",
+						"sandbox",
+						"1.0.0",
+						"Accounts",
+						"{AccountId}",
+						"transactions"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "<status>"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
